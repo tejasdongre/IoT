@@ -2,6 +2,7 @@ package com.example.tejasad.iot;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.Menu;
@@ -42,21 +43,21 @@ public class MyActivity extends Activity {
     public void btnGalLoadClick(View view) {
 
         Button btnLoadClick = (Button) view;
-        Intent mediaIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        Intent mediaIntent = new Intent(Intent.ACTION_PICK, Uri.parse("content://contacts"));
         startActivityForResult(mediaIntent,RESULT_LOAD_IMAGE);
 
 
     }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
-    protected void onActivityResult(int requestCode, int resultCode, Intent data)
-    {
+
+        super.onActivityResult(requestCode, resultCode, data);
         if(requestCode== RESULT_LOAD_IMAGE && resultCode == RESULT_OK && data !=null )
         {
 
 
         }
-
-
-
     }
+
 }
