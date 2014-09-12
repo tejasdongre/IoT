@@ -13,6 +13,7 @@ import android.widget.Button;
 
 public class MyActivity extends Activity {
     private static int RESULT_LOAD_IMAGE = 1;
+    static final int PICK_CONTACT_REQUEST = 1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,7 +45,17 @@ public class MyActivity extends Activity {
 
         Button btnLoadClick = (Button) view;
         Intent mediaIntent = new Intent(Intent.ACTION_PICK, Uri.parse("content://contacts"));
-        startActivityForResult(mediaIntent,RESULT_LOAD_IMAGE);
+        try{
+            startActivityForResult(mediaIntent,PICK_CONTACT_REQUEST);
+
+        }
+        catch(Exception expc)
+        {
+
+
+
+        }
+
 
 
     }
@@ -53,7 +64,7 @@ public class MyActivity extends Activity {
 
 
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode== RESULT_LOAD_IMAGE && resultCode == RESULT_OK && data !=null )
+        if(requestCode== PICK_CONTACT_REQUEST && resultCode == RESULT_OK && data !=null )
         {
 
 
