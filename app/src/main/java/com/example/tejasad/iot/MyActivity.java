@@ -13,7 +13,12 @@ import android.widget.Button;
 
 public class MyActivity extends Activity {
     private static int RESULT_LOAD_IMAGE = 1;
-    static final int PICK_CONTACT_REQUEST = 1;
+    static {
+
+        System.loadLibrary("alljoyn_java");
+
+
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,18 +49,8 @@ public class MyActivity extends Activity {
     public void btnGalLoadClick(View view) {
 
         Button btnLoadClick = (Button) view;
-        Intent mediaIntent = new Intent(Intent.ACTION_PICK, Uri.parse("content://contacts"));
-        try{
-            startActivityForResult(mediaIntent,PICK_CONTACT_REQUEST);
-
-        }
-        catch(Exception expc)
-        {
-
-
-
-        }
-
+        Intent mediaIntent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        startActivityForResult(mediaIntent,RESULT_LOAD_IMAGE);
 
 
     }
@@ -64,7 +59,7 @@ public class MyActivity extends Activity {
 
 
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode== PICK_CONTACT_REQUEST && resultCode == RESULT_OK && data !=null )
+        if(requestCode== RESULT_LOAD_IMAGE && resultCode == RESULT_OK && data !=null )
         {
 
 
